@@ -1,0 +1,56 @@
+Upload File
+      │
+      ▼
+Header Discovery
+      │
+      ▼
+Header Normalization
+      │
+      ▼
+Generate Signature
+      │
+      ▼
+Registry Lookup
+      │
+ ┌────┼─────┐
+ │    │     │
+ ▼    ▼     ▼
+
+100% 90%+ New
+Match Similar Format
+
+ │    │     │
+ ▼    ▼     ▼
+
+Reuse Extend Discovery
+
+            │
+            ▼
+      File Intelligence
+            │
+            ▼
+     Column Selection
+            │
+            ▼
+ Mandatory / Optional
+            │
+            ▼
+ Business Questions
+            │
+            ▼
+ Generate Schema
+            │
+            ▼
+ Human Approval
+            │
+            ▼
+ Generate Code
+            │
+            ▼
+ Validation Tests
+            │
+            ▼
+ Register Format
+            │
+            ▼
+ Commit to Repository
