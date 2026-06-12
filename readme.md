@@ -392,10 +392,59 @@ Provide:
 * Unique Constraints
 * Indexing Requirements
 * Retention Policy
+* Average records per file
+* Maximum records per file
+* Preferred batch size (optional)
 
 Output:
 
-Business Metadata
+Business & Processing Metadata
+
+---
+
+## Processing Strategy
+
+Based on expected file volume, the platform generates an optimized ingestion strategy.
+
+Default Batch Sizes:
+
+* Small Files (< 100,000 rows) → 2,000 records per batch
+* Medium/Large Files (> 100,000 rows) → 5,000 records per batch
+
+Generated Code Must:
+
+* Read files in batches
+* Validate records in batches
+* Insert records in batches
+* Commit transactions in batches
+* Avoid loading the entire file into memory
+* Generate database-specific bulk loading strategies when applicable
+
+Example Flow:
+
+```text
+                    Read Batch
+                        ↓
+                  Validate Batch
+                        ↓
+                  Transform Batch
+                        ↓
+                  Bulk Insert Batch
+                        ↓
+                      Commit
+                        ↓
+                  Read Next Batch   
+```
+
+Benefits:
+
+* Reduced memory consumption
+* Faster database writes
+* Improved transaction management
+* Better scalability for large files
+* Consistent ingestion performance
+* Production-ready ETL generation
+
 
 ---
 
@@ -599,11 +648,40 @@ Stores:
 * Faster delivery cycles
 * Improved governance
 * Simplified maintenance
+* Automatic generation of memory-efficient batch processing pipelines
 
 ---
+# Audit Logging
+
+Every onboarding activity must be logged.
+
+Examples:
+
+* File Uploaded
+* Match Found
+* Similarity Score
+* Human Decisions
+* Schema Approvals
+* Generated SQL
+* Generated Code
+* Test Results
+
+Purpose:
+
+* Traceability
+* Compliance
+* Troubleshooting
+* Knowledge Retention
 
 # Success Metric
 
 The platform is successful when onboarding a new file format becomes a metadata exercise rather than a software development project.
 
 Developers should spend their time defining business intent, while the platform generates and manages the surrounding technical implementation.
+
+
+# Author
+
+- Chaitya Shah
+- Software Engineer
+- chaitya.shah@wissen.com
